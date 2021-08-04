@@ -1,6 +1,12 @@
 <?php
 require_once("../main.php");
 include("../elements/header.php"); 
+// $date = Annee_egal_Age();
+$date = (int)$_POST['date_naissance'];
+var_dump($date);
+exit();
+$date = new Datetime();
+// $date->now();
 
 $nomjeunefillemere = NomjeuneFilleUnique("rott");
 $success = array();
@@ -41,6 +47,13 @@ if(($_POST)){
     if($nomjeunefillemere) {
         $errors["nomjeunefillemere"] = "nomjeunefillemere deja pris";
     }
+    if (isset($_POST['date_naissance'])) {
+        // affcihe la date 
+        echo $_POST['date_naissance'] .  "\t\t";
+        echo "date : " .  $date;
+    }
+
+    
     
 
     // si il y a pas d'erreur enregsitre les data

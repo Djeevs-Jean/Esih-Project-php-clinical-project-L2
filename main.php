@@ -267,6 +267,15 @@ function Idmedecin($dbname = null)
     return $sql->fetchAll();
 }
 
+function Annee_egal_Age()
+{
+    $date_annee = (int)$_POST['date_naissance'];
+    $date_annee = substr($date_annee, 0, 4);
+    $date_age = (int)$_POST['age'];
+    $date = $date_annee - $date_age;
+    return $date;
+}
+
 /**
  * Eviter les Erreurs
  */
@@ -277,4 +286,12 @@ function Error_Not_Valid($errors)
             return $error;
         }
     }
+}
+
+function reccuperation_du_medecin($dbname = null)
+{
+    $pdo = db($dbname);
+    $sql = $pdo->query("SELECT * FROM medecin where Idmedecin = ?");
+    $sql->execute(array($_GET['page']));
+    return $donnees = $sql->fetch();
 }

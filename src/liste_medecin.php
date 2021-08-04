@@ -32,7 +32,7 @@ $ids = Idmedecin("rott");
                             <h3 class="card-title display-5 fw-italic">DR. <?= $value["nom"]?> <?= $value["prenom"] ?></h3>
                             <h6 class="card-text">Le medecin a comme specialites de <?= $value['specialisation'] ?>.</h6>
                         </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-md btn-block" href="src/req/medecinpost/">Voir plus</a></div>
+                        <div class="card-footer"><a class="btn btn-primary btn-md btn-block" href="../src/medecin.php?page=<?= $value["Idmedecin"] ?>">Voir plus</a></div>
                     </div>
                 </div>
             <?php endforeach?>
