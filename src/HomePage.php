@@ -2,7 +2,15 @@
 include("../elements/header.php"); 
 ?>
 
-<!-- to start the HomePage -->
+<!-- to start the homepage -->
+
+
+<!-- home image -->
+
+
+<!-- <img src="../dist/img/svg.svg" alt=""> -->
+<img src="../dist/img/sva.svg" class="card-img-top" alt="...">
+
 <!-- Header-->
 <header class="py-5">
     <div class="container px-lg-5">
@@ -15,4 +23,5 @@ include("../elements/header.php");
         </div>
     </div>
 </header>
+
 <?php include("../elements/footer.php"); ?>

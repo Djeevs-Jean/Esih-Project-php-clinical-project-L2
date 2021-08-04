@@ -2,11 +2,16 @@
 require_once("../main.php");
 include("../elements/header.php"); 
 
-$lists_consultations = lists_consultations("rott");
+$lists_Id_Bypatient = lists_Id_Bypatient("rott");
 
-if(isset($_GET)){
-    $lists_des_consultations = lists_des_consultations("rott");
-}
+// if(isset($_GET)){
+    $consultation = ConsultationBypatient("rott");
+    $lists_Id_Bypatient = lists_Id_Bypatient("rott");
+var_dump($consultation);
+
+// }
+
+
 // $consultation_medecin = Idmedecin("rott");
 ?>
 <header class="bg-dark py-5">
@@ -36,7 +41,7 @@ if(isset($_GET)){
             <form action="" method="get" class="form-group">
             <label for="Idmedecin">Idmedecin</label>
                     <select name="q" id="name" class="form-control">
-                        <?php foreach($lists_consultations as $k): ?>
+                        <?php foreach($lists_Id_Bypatient as $k): ?>
                             <?php foreach($k as $v): ?>
                                 <option value="<?=$v ?>"><?= $v ?></option>
                             <?php endforeach; ?>
@@ -50,24 +55,23 @@ if(isset($_GET)){
     </div>
 </section>
 
-<section class="pt-4">
-    <div class="container px-lg-5">
-        <!-- Page Features-->
-        <div class="row gx-lg-5">
-            <?php if($lists_des_consultations): ?>
-            <?php foreach($lists_des_consultations as $v): ?>
-                <div class="col-md-4 mb-5">
-                    <div class="card bg-light border-0 h-100">
-                        <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-collection"></i></div>
-                            <h2 class="fs-4 fw-bold">Fresh new layout</h2>
-                            <p class="mb-0">With Bootstrap 5, we've created a fresh new layout for this template!</p>
-                        </div>
+<div class="container px-lg-5">
+    <!-- Page Features-->
+    <div class="row gx-lg-5">
+        <?php if($consultation): ?>
+        <?php foreach($consultation as $v): ?>
+            <div class="col-md-4 mb-5">
+                <div class="card bg-light border-0 h-100">
+                    <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4"><i class="bi bi-collection"></i></div>
+                        <h2 class="fs-4 fw-bold">Fresh new layout</h2>
+                        <p class="mb-0">With Bootstrap 5, we've created a fresh new layout for this template!</p>
                     </div>
                 </div>
-                <?php endforeach ?>
-                <?php endif ?>
-        </div>
+            </div>
+        <?php endforeach ?>
+        <?php endif ?>
     </div>
-</section>
-<?php include("../elements/footer.php"); ?>
+</div>
+<?php include("../elements/footer.php"); 
+?>

@@ -12,6 +12,10 @@ $ids = Idmedecin("rott");
 
 <!-- Listes des Medecins -->
 
+<!-- photo page -->
+<img src="svga.svg" class="card-img-top" alt="...">
+
+
 <!-- Call to Action-->
     <div class="container">
         <div class="card text-white bg-secondary my-5 py-4 text-center">
@@ -23,7 +27,7 @@ $ids = Idmedecin("rott");
             <?php foreach($medecins as $value): ?>
                 <div class="col-md-4 mb-5">
                     <div class="card h-100">
-                    <img class="card-img-top" src="../dist/img/img-doc.jpg" alt="medecin " />
+                        <img class="card-img-top" src="../dist/img/img-doc.jpg" alt="medecin " />
                         <div class="card-body">
                             <h3 class="card-title display-5 fw-italic">DR. <?= $value["nom"]?> <?= $value["prenom"] ?></h3>
                             <h6 class="card-text">Le medecin a comme specialites de <?= $value['specialisation'] ?>.</h6>
