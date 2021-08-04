@@ -2,6 +2,7 @@
 require_once("../main.php");
 include("../elements/header.php"); 
 
+$nomjeunefillemere = NomjeuneFilleUnique("rott");
 $success = array();
 $errors = array();
 if(($_POST)){
@@ -33,13 +34,19 @@ if(($_POST)){
     {
         $errors["age"] = "votre age n'est pas valide";
     }
-    if(empty($_POST['date_consultation']))
+    if(empty($_POST['nomjeunefillemere']))
     {
-        $errors["date_consultation"] = "votre date_consultation n'est pas valide";
+        $errors["nomjeunefillemere"] = "votre nomjeunefillemere n'est pas valide";
     }
-    else{
+    if($nomjeunefillemere) {
+        $errors["nomjeunefillemere"] = "nomjeunefillemere deja pris";
+    }
+    
 
-        $create_patient = create_patient("rott");
+    // si il y a pas d'erreur enregsitre les data
+    if(empty($errors))
+    {
+        create_patient("rott");
     }
 
 }
@@ -88,7 +95,7 @@ if(($_POST)){
                     </select> 
                 </div>
                 <div class="form-group col-md-12 mb-4">
-                    <input type="text" name="date_naissance" class="form-control" placeholder="date_naissance">
+                    <input type="date" name="date_naissance" class="form-control" placeholder="date_naissance">
                 </div>
 
                 <div class="form-group col-md-12 mb-4">

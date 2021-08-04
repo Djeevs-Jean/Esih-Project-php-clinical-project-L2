@@ -3,7 +3,9 @@ include("../elements/header.php");
 
 require_once("../main.php");
 
-
+$Iddossier = Iddossier("rott");
+            
+$Idmedecin = Idmedecin("rott");
 
 $errors = array();
 $success = array();
@@ -24,17 +26,19 @@ if(($_POST)){
     {
         $errors["date_consultation"] = "votre date_consultation n'est pas valide";
     }
-    else{
-
+    // si il y a pas d'erreur on enregistre les donnees
+    elseif(empty($errors))
+    {
         $create_consultation = create_consultation("rott");
-
-        $Iddossier = Iddossier("rott");
-        
-        $Idmedecin = Idmedecin("rott");
     }
 
 }
 
+// $Iddossier = Iddossier("rott");
+// var_dump($Idmedecin);
+            
+// $Idmedecin = Idmedecin("rott");
+// var_dump($Idmedecin);
 ?>
 <!-- Blog preview section-->
 <section class="py-5">

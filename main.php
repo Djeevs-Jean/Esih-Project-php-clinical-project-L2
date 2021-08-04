@@ -82,6 +82,20 @@ function array_prescription()
 }
 
 /**
+ * Verification que NomjeuneFilleUnique est unique
+ */
+function NomjeuneFilleUnique($dbname = null)
+{
+    if(!empty($_POST['nomjeunefillemere'])){
+        $pdo = db($dbname);
+        $nomjeunefillemere = $_POST["nomjeunefillemere"];
+        $sql = $pdo->prepare("SELECT Idpatient FROM patient where nomjeunefillemere = ?");
+        $sql->execute(array($nomjeunefillemere));
+        return $sql->fetch();
+    }
+}
+
+/**
  * CREATION D'UN PATIENT
  */
 function create_patient($dbname = null)
@@ -199,6 +213,16 @@ function lists_patients($dbname = null)
     $pdo = db($dbname);
     // get all order patients nomjeunefillemere
     $sql = $pdo->query("SELECT * FROM patient ORDER BY nomjeunefillemere");
+    return $sql->fetchAll();
+}
+/*
+* LISTER TOUS LES Medecins TO DATABASE
+ */
+function lists_medecins($dbname = null)
+{
+    $pdo = db($dbname);
+    // get all order patients nomjeunefillemere
+    $sql = $pdo->query("SELECT * FROM medecin ORDER BY nom");
     return $sql->fetchAll();
 }
 

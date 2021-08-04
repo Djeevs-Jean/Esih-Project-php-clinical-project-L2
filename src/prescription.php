@@ -2,24 +2,28 @@
 require_once("../main.php");
 include("../elements/header.php"); 
 
+$Idconsultation = Idconsultation("rott");
+
+
 $errors = array();
+$success = array();
 if(($_POST)){
+    // verifie si les champ ne sont pas vides
     if(empty($_POST['ordonnance']))
     {
         $errors["errors"] = "votre ordonnance n'est pas valide";
-    } else{
+    } 
+    
+    if (empty($errors)) {
+        create_prescription("rott");
 
-        $create_prescription = create_prescription("rott");
-
+        // succes on on enregistre data
+        $success["success"] = "vous a avez enregistrez";
     }
-    $Idconsultation = Idconsultation("rott");
+
 }
 
-
-
 ?>
-
-
 
 <section class="py-5">
     <div class="container px-5 my-5">
@@ -40,6 +44,17 @@ if(($_POST)){
                         <li><?= $error ?></li>
                     <?php endforeach; ?>
                 </ul>
+            </div>
+        <?php endif ?>
+
+        <!-- Succes Champ   -->
+        <?php if($success): ?>
+            <div class="alert alert-success text-center">
+                <!-- <ul> -->
+                    <?php foreach($success as $success): ?>
+                        <?= $success ?>
+                    <?php endforeach; ?>
+                <!-- </ul> -->
             </div>
         <?php endif ?>
 

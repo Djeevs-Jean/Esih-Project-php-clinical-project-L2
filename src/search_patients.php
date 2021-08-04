@@ -2,8 +2,8 @@
 require_once("../main.php");
 include("../elements/header.php"); 
 
-
-$search_patient = search_patient("rott");
+// sql function de recherche 
+search_patient("rott");
 
 $list_search_patient = list_search_patient("rott");
 ?>

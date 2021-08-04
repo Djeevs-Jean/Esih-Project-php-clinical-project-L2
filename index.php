@@ -1,5 +1,6 @@
 <?php
 require_once("main.php");
+include("elements/header.php");
 
 // $_POST DATA 
 // $nom = $_POST['nom'];
@@ -50,3 +51,6 @@ create_patient("rott");
       </div>
     <button type="submit" class="btn btn-primary form-control">Create Patient</button>
 </form>
+
+
+<?php include("elements/footer.php");?>
