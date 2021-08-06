@@ -1,6 +1,6 @@
 <?php
-require_once("../main.php");
-include("../elements/header.php"); 
+
+include("../layouts/header.php"); 
 
 $Idconsultation = Idconsultation("rott");
 
@@ -11,18 +11,17 @@ if(($_POST)){
     // verifie si les champ ne sont pas vides
     if(empty($_POST['ordonnance']))
     {
-        $errors["errors"] = "votre ordonnance n'est pas valide";
+        $errors["errors"] = "L'ordonnance n'est pas valide";
     } 
     
     if (empty($errors)) {
         create_prescription("rott");
 
-        // succes on on enregistre data
-        $success["success"] = "vous a avez enregistrez";
+        // message de success
+        $success["success"] = "message de success enregistrement prescription effectuer";
     }
 
 }
-
 ?>
 
 <section class="py-5">
@@ -47,14 +46,13 @@ if(($_POST)){
             </div>
         <?php endif ?>
 
-        <!-- Succes Champ   -->
+        <!-- validation enregsitrement est faite avec success -->
         <?php if($success): ?>
             <div class="alert alert-success text-center">
-                <!-- <ul> -->
-                    <?php foreach($success as $success): ?>
-                        <?= $success ?>
-                    <?php endforeach; ?>
-                <!-- </ul> -->
+                <!-- affichage du message success -->
+                <?php foreach($success as $success): ?>
+                    <?= $success ?>
+                <?php endforeach; ?>
             </div>
         <?php endif ?>
 
@@ -73,7 +71,7 @@ if(($_POST)){
                     </div>
         
                     <div class="form-group col-md-12 mb-4">
-                        <input type="text" name="ordonnance" class="form-control" placeholder="ordonnance">
+                        <textarea type="text" name="ordonnance" class="form-control" rows="8" placeholder="ordonnance"></textarea>
                     </div>                            
 
                 <button type="submit" class="btn btn-primary form-control mt-4">Create Prescription</button>
@@ -84,4 +82,4 @@ if(($_POST)){
     </div>
 </section>
 
-<?php include("../elements/footer.php"); ?>
+<?php include("../layouts/footer.php"); ?>

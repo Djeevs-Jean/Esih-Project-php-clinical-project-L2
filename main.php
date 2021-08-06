@@ -147,7 +147,7 @@ function ExistError()
     // return $errors;
 }
 
-function lists_consultations($dbname = null)
+function Id_consultationsBypatient($dbname = null)
 {
     $pdo = db($dbname);
     // get all consultations order 
@@ -176,6 +176,16 @@ function search_patient($dbname = null)
     }
     
 }
+
+function Un_patient($dbname = null)
+{
+    $pdo = db($dbname);
+    $sqlq = $_GET['page'];
+    $sql = $pdo->prepare("SELECT * FROM medecin WHERE Idmedecin = ?");
+    $sql->execute(array($sqlq));
+    // retourne donne pour L'id
+    return $donne = $sql->fetch();
+}
 /**
  * recherche de medecin
  */
@@ -190,6 +200,20 @@ function search_consultations($dbname = null)
     
 }
 
+function VerifierAge_Annne()
+{
+    $age = $_POST['age'];
+    $anne = $_POST['date_naissance'];
+    // extraire la date = 
+    $anne = (int)substr($anne, 0, 4);
+    $anne_resul = (2021 - $anne);
+    if($anne_resul == $age){
+        return true;
+    }else{
+        return false;
+    }
+    // return $anne_resul;
+}
 /**
  * AFFICHER SEULEMENT LES PATIENTS RECHERCHER
  */
@@ -200,7 +224,7 @@ function list_search_patient($dbname = null)
     if (!empty($_GET)) {
         # code...
         $nom = $_GET['q'];
-        $sql = $pdo->query("SELECT * FROM patient patient WHERE nom = '$nom'");
+        $sql = $pdo->query("SELECT * FROM patient where nom LIKE  '%{$nom}%' ");
         return $sql->fetchAll();
     }
 }
@@ -240,8 +264,13 @@ function lists_des_consultations($dbname = null)
     }
 }
 
+$a = 21;
+$y = 2000;
+$date = 2;
+
 function Idconsultation($dbname = null)
 {
+    // connection pdo
     $pdo = db($dbname);
     // get all id Prescription
     $sql = $pdo->query("SELECT Idconsultation FROM consultation");
@@ -267,31 +296,47 @@ function Idmedecin($dbname = null)
     return $sql->fetchAll();
 }
 
-function Annee_egal_Age()
-{
-    $date_annee = (int)$_POST['date_naissance'];
-    $date_annee = substr($date_annee, 0, 4);
-    $date_age = (int)$_POST['age'];
-    $date = $date_annee - $date_age;
-    return $date;
-}
-
 /**
- * Eviter les Erreurs
+ * La listes des consultations pour la partie prescription et
  */
-function Error_Not_Valid($errors)
+function ConsultationBypatient($dbname = null)
 {
-    if($errors){
-        foreach($errors as $error){
-            return $error;
-        }
+    // si la recherche n'est pas vide effectuer ceci
+    if(!empty($_GET))
+    {
+        // ce que je recherche
+        $research = $_GET["q"];
+        $pdo = db($dbname);
+        $sql = $pdo->prepare("SELECT * FROM consultation WHERE no_dossier = ?");
+        $sql->execute(array($research));
+        return $sql->fetchAll();
+    }
+}
+/**
+ * pour la parties consultation_et_prescription 
+ */
+function PrescriptionBypatient($dbname = null)
+{
+    // si la recherche n'est pas vide effectuer ceci
+    if(!empty($_GET))
+    {
+        // ce que recherche 
+        $recherche = $_GET["q"];
+        $pdo = db($dbname);
+        $sql = $pdo->prepare("SELECT * FROM prescription WHERE Idconsultation = ?");
+        $sql->execute(array($recherche));
+        return $sql->fetchAll();
     }
 }
 
-function reccuperation_du_medecin($dbname = null)
+/**
+ * Pour le fichier liste_consultation_prescription.php , je reccupere tous les ids
+ * affiche tous les ids de consultaions
+ */
+function lists_Id_Bypatient($dbname = null)
 {
+    // get all Idconsultation consultation
     $pdo = db($dbname);
-    $sql = $pdo->query("SELECT * FROM medecin where Idmedecin = ?");
-    $sql->execute(array($_GET['page']));
-    return $donnees = $sql->fetch();
+    $sql = $pdo->query("SELECT Idconsultation FROM consultation");
+    return $sql->fetchAll();
 }

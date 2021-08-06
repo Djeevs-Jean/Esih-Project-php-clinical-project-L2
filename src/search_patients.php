@@ -1,6 +1,6 @@
 <?php
-require_once("../main.php");
-include("../elements/header.php"); 
+
+include("../layouts/header.php"); 
 
 // sql function de recherche 
 search_patient("rott");
@@ -8,11 +8,11 @@ search_patient("rott");
 $list_search_patient = list_search_patient("rott");
 ?>
 <h2>
-    Search Patient
+    Rechercher Patient
 </h2>
 <form method="get" class="form-group col-md-8">
     <div class="row">
-        
+        <!-- recher a patient -->
         <div class="form-group col-md-12 mb-4">
             <input type="text" name="q" class="form-control" placeholder="Searh">
         </div>
@@ -24,7 +24,6 @@ $list_search_patient = list_search_patient("rott");
     <table class="table table-striped">
         <thead>
             <tr>
-
                 <th>@</th>
                 <th>nom</th>
                 <th>prenom</th>
@@ -49,10 +48,9 @@ $list_search_patient = list_search_patient("rott");
                 <td><?= $value['adresse'] ?></td>
                 <td><?= $value['age'] ?></td>
                 <td><?= $value['nomjeunefillemere'] ?></td>
-
             </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
 <?php endif ?>
-<?php include("../elements/footer.php"); ?>
+<?php include("../layouts/footer.php"); ?>

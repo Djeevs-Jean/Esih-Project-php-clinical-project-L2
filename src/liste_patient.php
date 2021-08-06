@@ -1,6 +1,6 @@
 <?php
-require_once("../main.php");
-include("../elements/header.php"); 
+
+include("../layouts/header.php"); 
 
 // sql function de recherche patient
 search_patient("rott");
@@ -22,8 +22,9 @@ if(!($_GET)){
 <!-- PATIENT REPRESENT THERE -->
 
 <header class="py-5 bg-light border-bottom mb-4">
+
     <!-- <img src="../dist/img/svg.svg" alt=""> -->
-<img src="../dist/img/sva.svg" height="230px" class="card-img-top" alt="...">
+    <img src="../dist/img/sva.svg" height="230px" class="card-img-top" alt="...">
 
     <div class="container">
         <div class="text-center my-5">
@@ -31,6 +32,7 @@ if(!($_GET)){
             <p>Liste des patients</p>
         </div>
     </div>
+
 </header>
     <!-- Page content-->
     <div class="container">
@@ -47,9 +49,9 @@ if(!($_GET)){
                                 <a href="#!"><img class="card-img-top" src="../dist/img/sv1.svg" height="220px" alt="..." /></a>
                                 <div class="card-body">
                                     <!-- <div class="small text-muted">January 1, 2021</div> -->
-                                    <h2 class="card-title h4"><?= $value['nom'] ?> <?= $value['prenom'] ?></h2>
-                                    <p class="card-text"><?= $value['sexe'] ?> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
-                                    <a class="btn btn-outline-primary" href="#!">Read more →</a>
+                                    <h2 class="card-title h2"><?= $value['nom'] ?> <?= $value['prenom'] ?></h2>
+                                    <p class="card-text"><?= $value['sexe'] ?> Patient.</p>
+                                    <a class="btn btn-outline-primary" href="#!">Patient Healthy Hospital </a>
                                 </div>
                             </div>
                             <!-- fin de liste-->
@@ -59,16 +61,16 @@ if(!($_GET)){
 
             </div>
 
-
+<!-- search -->
             <!-- partie qui fais rechercher-->
             <div class="col-lg-4">
                 <!-- Zone de Recherche-->
                 <div class="card mb-4">
-                    <div class="card-header">Search</div>
+                    <div class="card-header">Rechercher patient </div>
                     <div class="card-body">
                         <form action="" method="get">
                             <div class="input-group">
-                                <input class="form-control" type="text" placeholder="search..." name="q" />
+                                <input class="form-control" type="text" placeholder="rehercher par nom" name="q" />
                                 <input type="submit" class="btn btn-primary">
                             </div>
                         </form>
@@ -85,5 +87,5 @@ if(!($_GET)){
     </div>
 
 <!-- END PATIENT REPRESENT THERE -->
-<?php include("../elements/footer.php"); 
+<?php include("../layouts/footer.php"); 
 ?>

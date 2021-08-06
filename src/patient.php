@@ -1,21 +1,17 @@
 <?php
-require_once("../main.php");
-include("../elements/header.php"); 
-// $date = Annee_egal_Age();
-$date = (int)$_POST['date_naissance'];
-var_dump($date);
-exit();
-$date = new Datetime();
-// $date->now();
+
+include("../layouts/header.php"); 
 
 $nomjeunefillemere = NomjeuneFilleUnique("rott");
 $success = array();
 $errors = array();
 if(($_POST)){
+    $dateage = VerifierAge_Annne();
     if(empty($_POST['nom']))
     {
         $errors["nom"] = "votre nom n'est pas valide";
     }
+    
     if(empty($_POST['prenom']))
     {
         $errors["prenom"] = "votre prenom n'est pas valide";
@@ -42,24 +38,26 @@ if(($_POST)){
     }
     if(empty($_POST['nomjeunefillemere']))
     {
-        $errors["nomjeunefillemere"] = "votre nomjeunefillemere n'est pas valide";
+        $errors["nomjeunefillemere"] = "votre Nom Jeune Fille Mere n'est pas valide";
     }
     if($nomjeunefillemere) {
         $errors["nomjeunefillemere"] = "nomjeunefillemere deja pris";
     }
-    if (isset($_POST['date_naissance'])) {
-        // affcihe la date 
-        echo $_POST['date_naissance'] .  "\t\t";
-        echo "date : " .  $date;
+    
+    // verifier votre l'age est bien une bonne age , si =! true, L\'age n'est pas correct
+    if(($dateage)!=true)
+    {
+        $errors["age"] = "votre age n'est correct";
     }
-
-    
-    
 
     // si il y a pas d'erreur enregsitre les data
     if(empty($errors))
     {
+        // pour crer patient
         create_patient("rott");
+
+        // message de success
+        $success["success"] = "message de success enregistrement patient effectuer";
     }
 
 }
@@ -78,7 +76,7 @@ if(($_POST)){
             </div>
         </div>
 
-        <!-- Error Champ   -->
+        <!-- formulaire n'as pa enregistrer, Affichage message erreurs  -->
         <?php if($errors): ?>
             <div class="alert alert-danger">
                 <ul>
@@ -89,6 +87,15 @@ if(($_POST)){
             </div>
         <?php endif ?>
 
+        <!-- validation enregsitrement est faite avec success -->
+        <?php if($success): ?>
+            <div class="alert alert-success text-center">
+                <!-- affichage du message success -->
+                <?php foreach($success as $success): ?>
+                    <?= $success ?>
+                <?php endforeach; ?>
+            </div>
+        <?php endif ?>
 
         <div class="row gx-5 justify-content-center">
             <form action="" method="post" class="form-group">
@@ -100,20 +107,25 @@ if(($_POST)){
                     <input type="text" name="prenom" class="form-control" placeholder="prenom">
                 </div>
 
-                <div class="form-group col-md-12 mb-4">
-                <label for="sexe">Sexe</label>
-                    <select name="sexe" id="" class="form-control">Sexe
-                        <option value="Masculin">Masulin</option>
-                        <option value="Feminin">Feminin</option>
-                    </select> 
+                <div class="row">
+                    <div class="form-group col-md-6 mb-4">
+                    <label for="sexe">Sexe</label>
+                        <select name="sexe" id="" class="form-control">Sexe
+                            <option value="Masculin">Masculin</option>
+                            <option value="Feminin">Feminin</option>
+                        </select> 
+                    </div>
+                    
+                    <div class="form-group col-md-6 mb-4">
+                        <label for="sexe">Telephone</label>
+                        <input type="text" name="telephone" class="form-control" placeholder="telephone">
+                    </div>
                 </div>
+
                 <div class="form-group col-md-12 mb-4">
                     <input type="date" name="date_naissance" class="form-control" placeholder="date_naissance">
                 </div>
 
-                <div class="form-group col-md-12 mb-4">
-                    <input type="text" name="telephone" class="form-control" placeholder="telephone">
-                </div>
                 <div class="form-group col-md-12 mb-4">
                     <input type="text" name="adresse" class="form-control" placeholder="adresse">
                 </div>
@@ -132,4 +144,4 @@ if(($_POST)){
         
     </div>
 </section>
-<?php include("../elements/footer.php"); ?>
+<?php include("../layouts/footer.php"); ?>

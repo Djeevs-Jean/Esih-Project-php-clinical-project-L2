@@ -1,7 +1,7 @@
 <?php
-include("../elements/header.php"); 
+include("../layouts/header.php"); 
 
-require_once("../main.php");
+
 
 $Iddossier = Iddossier("rott");
             
@@ -12,7 +12,7 @@ $success = array();
 if(($_POST)){
     if(empty($_POST['no_dossier']))
     {
-        $errors["no_dossier"] = "votre no_dossier n'est pas valide";
+        $errors["no_dossier"] = "votre No_dossier n'est pas valide";
     }
     if(empty($_POST['Idmedecin']))
     {
@@ -20,25 +20,23 @@ if(($_POST)){
     }
     if(empty($_POST['symptome']))
     {
-        $errors["symptome"] = "votre symptome n'est pas valide";
+        $errors["symptome"] = "Symptome n'est pas valide";
     }
     if(empty($_POST['date_consultation']))
     {
-        $errors["date_consultation"] = "votre date_consultation n'est pas valide";
+        $errors["date_consultation"] = "Date de consultation n'est pas valide";
     }
     // si il y a pas d'erreur on enregistre les donnees
     elseif(empty($errors))
     {
         $create_consultation = create_consultation("rott");
+
+        // message de success
+        $success["success"] = "message de success enregistrement consultation effectuer";
     }
 
 }
 
-// $Iddossier = Iddossier("rott");
-// var_dump($Idmedecin);
-            
-// $Idmedecin = Idmedecin("rott");
-// var_dump($Idmedecin);
 ?>
 <!-- Blog preview section-->
 <section class="py-5">
@@ -52,7 +50,7 @@ if(($_POST)){
             </div>
         </div>
 
-        <!-- Error Champ   -->
+        <!-- formulaire n'as pa enregistrer, Affichage message erreurs  -->
         <?php if($errors): ?>
             <div class="alert alert-danger">
                 <ul>
@@ -63,23 +61,36 @@ if(($_POST)){
             </div>
         <?php endif ?>
 
-        <div class="row gx-5 justify-content-center">
+        <!-- validation enregsitrement est faite avec success -->
+        <?php if($success): ?>
+            <div class="alert alert-success text-center">
+                <!-- affichage du message success -->
+                <?php foreach($success as $success): ?>
+                    <?= $success ?>
+                <?php endforeach; ?>
+            </div>
+        <?php endif ?>
+
+        <!-- partie formulaire -->
+
+        <div class="row justify-content-center">
             <form action="" method="post" class="form-group">
 
-                    <div class="form-group col-md-12 mb-2">
+            <div class="row">
+                <div class="form-group col-md-6 mb-2">
 
-                        <label for="Iddossier">Iddossier</label>
-                            <select name="no_dossier" id="name" class="form-control">
-                                <?php foreach($Iddossier as $k): ?>
-                                    <?php foreach($k as $v): ?>
-                                        <option value="<?=$v ?>"><?= $v ?></option>
-                                    <?php endforeach; ?>
+                    <label for="Iddossier">Iddossier</label>
+                        <select name="no_dossier" id="name" class="form-control">
+                            <?php foreach($Iddossier as $k): ?>
+                                <?php foreach($k as $v): ?>
+                                    <option value="<?=$v ?>"><?= $v ?></option>
                                 <?php endforeach; ?>
-                            </select>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
 
-                    <div class="form-group col-md-12 mb-4">
-                    
+                    <div class="form-group col-md-6 mb-4">
+
                         <label for="Idmedecin">Idmedecin</label>
                             <select name="Idmedecin" id="name" class="form-control">
                                 <?php foreach($Idmedecin as $k): ?>
@@ -89,20 +100,21 @@ if(($_POST)){
                                 <?php endforeach; ?>
                             </select>
                     </div>
+                </div>
                     
-                    <div class="form-group col-md-12 mb-4">
-                        <input type="text" name="symptome" class="form-control" placeholder="symptome">
-                    </div>
+                <div class="form-group col-md-12 mb-4">
+                    <input type="text" name="symptome" class="form-control" placeholder="symptome">
+                </div>
 
-                    <div class="form-group col-md-12 mb-4">
-                        <input type="date" name="date_consultation" class="form-control" placeholder="date_consultation">
-                    </div>                              
+                <div class="form-group col-md-12 mb-4">
+                    <input type="date" name="date_consultation" class="form-control" placeholder="date_consultation">
+                </div>                              
 
-                <button type="submit" class="btn btn-primary form-control mt-4">Create Consultation</button>
+                <button type="submit" class="btn btn-secondary form-control mt-4">Create Consultation</button>
 
             </form>
         </div>
         
     </div>
 </section>
-<?php include("../elements/footer.php"); ?>
+<?php include("../layouts/footer.php"); ?>
