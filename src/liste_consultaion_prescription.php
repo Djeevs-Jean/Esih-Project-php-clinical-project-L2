@@ -1,6 +1,6 @@
 <?php
 
-include("../layouts/header.php"); 
+include("../elements/header.php"); 
 
 $lists_Id_Bypatient = lists_Id_Bypatient("rott");
 
@@ -94,5 +94,5 @@ if(isset($_GET)){
 
     
 
-<?php include("../layouts/footer.php"); 
+<?php include("../elements/footer.php"); 
 ?>

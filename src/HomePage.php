@@ -1,5 +1,5 @@
 <?php
-include("../layouts/header.php"); 
+include("../elements/header.php"); 
 ?>
 
 
@@ -17,4 +17,4 @@ include("../layouts/header.php");
     </div>
 </header>
 
-<?php include("../layouts/footer.php"); ?>
+<?php include("../elements/footer.php"); ?>

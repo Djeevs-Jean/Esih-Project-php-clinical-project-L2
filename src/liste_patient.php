@@ -1,6 +1,6 @@
 <?php
 
-include("../layouts/header.php"); 
+include("../elements/header.php"); 
 
 // sql function de recherche patient
 search_patient("rott");
@@ -87,5 +87,5 @@ if(!($_GET)){
     </div>
 
 <!-- END PATIENT REPRESENT THERE -->
-<?php include("../layouts/footer.php"); 
+<?php include("../elements/footer.php"); 
 ?>

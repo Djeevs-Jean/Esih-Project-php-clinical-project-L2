@@ -1,5 +1,5 @@
 <?php
-include("../layouts/header.php"); 
+include("../elements/header.php"); 
 
 
 
@@ -117,4 +117,4 @@ if(($_POST)){
         
     </div>
 </section>
-<?php include("../layouts/footer.php"); ?>
+<?php include("../elements/footer.php"); ?>

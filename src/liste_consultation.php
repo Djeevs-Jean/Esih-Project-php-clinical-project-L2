@@ -1,6 +1,6 @@
 <?php
 
-include("../layouts/header.php"); 
+include("../elements/header.php"); 
 
 $Id_consultationsBypatient = Id_consultationsBypatient("rott");
 
@@ -70,4 +70,4 @@ if(isset($_GET)){
         </div>
     </div>
 </section>
-<?php include("../layouts/footer.php"); ?>
+<?php include("../elements/footer.php"); ?>

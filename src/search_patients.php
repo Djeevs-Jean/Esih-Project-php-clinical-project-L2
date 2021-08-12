@@ -1,6 +1,6 @@
 <?php
 
-include("../layouts/header.php"); 
+include("../elements/header.php"); 
 
 // sql function de recherche 
 search_patient("rott");

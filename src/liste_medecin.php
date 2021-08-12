@@ -1,6 +1,6 @@
 <?php
 
-include("../layouts/header.php"); 
+include("../elements/header.php"); 
 
 
 // recuperation liste des medecins
@@ -36,4 +36,4 @@ $ids = Idmedecin("rott");
     </div>
 
 
-<?php include("../layouts/footer.php"); ?>
+<?php include("../elements/footer.php"); ?>

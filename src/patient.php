@@ -1,6 +1,6 @@
 <?php
 
-include("../layouts/header.php"); 
+include("../elements/header.php"); 
 
 $nomjeunefillemere = NomjeuneFilleUnique("rott");
 $success = array();
@@ -144,4 +144,4 @@ if(($_POST)){
         
     </div>
 </section>
-<?php include("../layouts/footer.php"); ?>
+<?php include("../elements/footer.php"); ?>

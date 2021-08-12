@@ -1,6 +1,6 @@
 <?php
 
-include("../layouts/header.php"); 
+include("../elements/header.php"); 
 
 $errors = array();
 $success = array();
@@ -126,4 +126,4 @@ if(($_POST)){
 </section>
 
 
-<?php include("../layouts/footer.php"); ?>
+<?php include("../elements/footer.php"); ?>
