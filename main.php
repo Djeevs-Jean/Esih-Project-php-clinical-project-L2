@@ -224,7 +224,7 @@ function list_search_patient($dbname = null)
     if (!empty($_GET)) {
         # code...
         $nom = $_GET['q'];
-        $sql = $pdo->query("SELECT * FROM patient where nom LIKE  '%{$nom}%' ");
+        $sql = $pdo->query("SELECT * FROM patient where nom LIKE '%{$nom}%' ");
         return $sql->fetchAll();
     }
 }
