@@ -1,0 +1,17 @@
+Medecin
+    Nom = ?, Prenom = ?, Sexe = ?, Tel = ?, Address = ?, Email = ?, Specialite = ?, IdConsultation = ?
+    $_POST['Nom'],$_POST['Prenom'],$_POST['Sexe'],$_POST['Tel'],$_POST['Address'],$_POST['Email'],$_POST['Specialite'],$_POST['IdConsultation']
+
+DOSSIER
+    code = ?, idConsultation = ?, dateEnregistrementDate = ?
+    $_POST['code'], $_POST['idConsultation'], $_POST['dateEnregistrementDate']
+
+Consultation
+    id = ?, idMedecin = ?, idPatient = ?, poids = ?, hauteur = ?, diagnostique = ?, consultationDate = ?,
+    $_POST['id'], $_POST['idMedecin'], $_POST['idPatient'], $_POST['poids'], $_POST['hauteur'], $_POST['diagnostique'], $_POST['consultationDate'],
+
+Patient
+    id = ?,nom = ?,prenom = ?,sexe = ?,tel = ?,addresse = ?
+    $_POST['id'], $_POST['nom'], $_POST['prenom'], $_POST['sexe'], $_POST['tel'], $_POST['addresse']
+
+

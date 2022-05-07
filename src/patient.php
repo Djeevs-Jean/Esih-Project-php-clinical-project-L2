@@ -51,13 +51,12 @@ if(($_POST)){
     }
 
     // si il y a pas d'erreur enregsitre les data
-    if(empty($errors))
-    {
-        // pour crer patient
-        create_patient("rott");
-
+    else{
+        // pour crer médecin
+        create_medecin("rott");
+        
         // message de success
-        $success["success"] = "message de success enregistrement patient effectuer";
+        $success["success"] = "message de success enregistrement médecin effectuer";
     }
 
 }

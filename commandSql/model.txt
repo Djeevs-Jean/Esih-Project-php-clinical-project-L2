@@ -1,0 +1,40 @@
+Medecin
+        Id
+        Nom
+        Prenom
+        Sexe
+        Tel
+        Address
+        Email
+        Specialite
+        IdConsultation
+
+        $sql = $pdo->prepare("INSERT INTO medecin SET nom = ?, prenom = ?,sexe = ? ,telephone = ?, adresse = ?, email = ?, specialisation = ? ");
+        $sql->execute(array($_POST['nom'], $_POST['prenom'], $_POST['sexe'], $_POST['telephone'], $_POST['adresse'],  $_POST['telephone'],$_POST['email'],$_POST['specialisation']));
+
+Dossier
+        Code
+        IdConsultation
+        DateEnregistrement Date
+
+Consultation
+        Id
+        IdMedecin
+        IdPatient
+        Poids
+        Hauteur
+        Diagnostique
+        ConsultationDate
+
+Patient
+        Id
+        Nom
+        Prenom
+        Sexe
+        Tel
+        Address
+
+Prescription
+        Id
+        ConsultationId
+        TextPrescription
